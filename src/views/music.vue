@@ -3,7 +3,7 @@
 
         <div class="flex-box" style="margin:10px">
                 <div class="music-info-img" >
-                   <div class="center">
+                   <div class=" ">
                     <img class="music-img" :src="detail.al.picUrl" alt="" srcset="" height="50%" width="50%" style="border-radius:50%">
                           <div class="title"> 
                         {{song.name}}

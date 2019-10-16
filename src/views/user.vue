@@ -77,7 +77,7 @@ export default {
         flex-wrap: wrap;
     }
     &-profile{
-        width: 900px;
+        width: 90%;
         margin: auto;
     }
     &-basic{

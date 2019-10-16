@@ -29,7 +29,6 @@ props: ['album'],
 
 <style lang='scss'>
 @media screen and (max-width: 650px) {
-   
     .album{
         padding: 0px;
         &-name{
