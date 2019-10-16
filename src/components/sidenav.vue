@@ -16,7 +16,7 @@
             <div class="nav-ui" @click="goto('login')" v-show="user == null">
            <font-awesome-icon :icon="['fas', 'user']" /> 登录
           </div>
-            <div class="nav-ui" @click="goto('login')" v-show="user != null">
+            <div class="nav-ui" @click="goto('user')" v-show="user != null">
            <font-awesome-icon :icon="['fas', 'user-circle']" /> 我的信息
           </div>
       </div>
