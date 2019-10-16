@@ -1,0 +1,122 @@
+@import './main.scss';
+
+ 
+//文字颜色
+.primary{
+    color: $primary;
+    &-darken{
+        color: $primary-darken;
+    }
+}
+.secondary{
+    color: $secondary;
+    &-darken{
+        color: $secondary-darken;
+    }
+}
+
+
+//背景颜色
+.bg-primary{
+    background-color: $primary;
+    &-darken{
+        background-color: $primary-darken;
+    }
+}
+.bg-secondary{
+    background-color: $secondary;
+    &-darken{
+        background-color: $secondary-darken;
+    }
+}
+
+
+//边框颜色
+.border-primary{
+    border: 1px solid $primary;
+}
+
+.border-primary-darken{
+    border: 1px solid $primary-darken;
+}
+
+
+//尺寸
+.full-container{
+    height: 100%;
+    width: 100%;
+}
+
+.half-container{
+    height: 50%;
+    width: 50%;
+}
+
+//位置
+.fixed{
+    position: fixed;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.relative{
+    position: relative;
+}
+
+.center{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.block{
+    display: block;;
+}
+
+
+//组件
+
+.flex-box{
+    display: flex;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+@media screen and (max-width: 650px) {
+    .flex-box{
+        display: block;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+    
+}
+
+.btn{
+    height: 25px;
+    font-size: 15px;
+    padding: 5px;
+    border: none;
+    display: inline-block;
+    border-radius: 3px;
+    background-color:$primary;
+    outline: none;
+}
+
+input{
+    height: 30px;
+    font-size: 20px;
+    padding: 5px;
+    border: none;
+    outline: none;
+}
+
+
+//文字
+
+.title{
+    font-size: 25px;
+
+}

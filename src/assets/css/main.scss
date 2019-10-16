@@ -1,0 +1,23 @@
+//主题颜色
+$primary: rgb(231, 218, 166);
+$secondary:#D59358;
+$primary-light: lighten($primary,10%); 
+$primary-darken:darken($primary,30%);
+$secondary-darken: darken($secondary,30%);
+$border-dark: rgba($primary, 0.88);
+
+//全局
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'kaiti';
+
+}
+body{
+    overflow-x: hidden;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
