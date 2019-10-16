@@ -13,18 +13,25 @@
             <div class="nav-ui" @click="goto('music')">
            <font-awesome-icon :icon="['fas', 'music']" /> 音乐
           </div>
-            <div class="nav-ui" @click="goto('login')">
+            <div class="nav-ui" @click="goto('login')" v-show="user == null">
            <font-awesome-icon :icon="['fas', 'user']" /> 登录
+          </div>
+            <div class="nav-ui" @click="goto('login')" v-show="user != null">
+           <font-awesome-icon :icon="['fas', 'user-circle']" /> 我的信息
           </div>
       </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
 props:[
   'show'
 ],
+computed: mapState({
+    user: state => state.user
+  }),
 methods: {
   close() {
      this.$emit('switch')
