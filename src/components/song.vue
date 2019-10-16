@@ -33,9 +33,7 @@
 import {EventBus} from '../main';
 export default {
     props: ['song'],
-    mounted () {
-        console.log(this.song);  
-    },
+    
     methods: {
       play() {
             this.axios('song/url?id='+this.song.id).then(res=>{

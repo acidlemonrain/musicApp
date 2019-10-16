@@ -42,5 +42,13 @@ export default new Router({
       path: '/music',
       component: () => import('./views/music.vue'),
     },
+    {
+      path: '/songers',
+      component: () => import('./views/songers.vue'),
+    },
+    {
+      path: '/songer/:id',
+      component: () => import('./views/songer.vue'),
+    },
   ]
 })

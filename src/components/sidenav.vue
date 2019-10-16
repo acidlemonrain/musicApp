@@ -4,7 +4,7 @@
           <div class="nav-ui-title">
             列表
           </div>
-          <div class="nav-ui" @click="goto('')">
+          <div class="nav-ui" @click="goto('songers')">
              <font-awesome-icon :icon="['fas', 'fire']" /> 热门歌手
           </div>
            <div class="nav-ui" @click="goto('albums')">
