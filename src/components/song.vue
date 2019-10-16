@@ -39,12 +39,19 @@ export default {
     methods: {
       play() {
             this.axios('song/url?id='+this.song.id).then(res=>{
+                
                 console.log(res.data.data[0]);
+
                 let data = (res.data.data[0]);
-                data.name = this.song.name;
-                data.artists = this.song.artists
-                   data.ar = this.song.ar
-                  EventBus.$emit('play',data);
+                if(data.url != null){
+                    data.name = this.song.name;
+                    data.artists = this.song.artists
+                    data.ar = this.song.ar
+                    EventBus.$emit('play',data);
+                }else{
+                    alert('该歌曲无法播放')
+                }
+              
    
             })
      }

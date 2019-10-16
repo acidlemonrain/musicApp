@@ -1,36 +1,30 @@
 <template>
   <div>
-      {{searchKey}}
-    <div @click="hotkey(item)" v-for="item in hotKeys.data" :key="item">
+    
+    <div class="hot-keys"  >
+        <span style="color:red">热门搜索:</span>  <span @click="search(item)" class="hot-key"  v-for="item in hotKeys.data" :key="item">
         {{ item }}
+    </span>
     </div>
 
-    <div class="songs">
-        <div v-for="item in songs.data" :key="item.id">
-           <songVue :song=item />
-        </div>
-    </div>
+    
+           <songsVue v-show="songs.data" :songs=songs.data />
+  
 
 
   </div>
 </template>
 
 <script>
-import songVue from '../components/song.vue';
-songVue
+import songsVue from '../components/songs.vue';
+import {EventBus} from '../main';
 export default {
 components: {
-    songVue,
+    songsVue,
 },
-
-
-
     data() {
         return {
             hotKeys: {
-                data:null
-            },
-            myKey:{
                 data:null
             },
             songs:{
@@ -38,19 +32,19 @@ components: {
             }
         }
     },
-    computed: {
-        searchKey() {
-            return this.$store.state.player.searchKey 
-        }
-    },
-
     //init
     created () {
         this.searchhot();
+          EventBus.$on('search',data=>this.search(data));
     },
 
  
     methods: {
+    search(data) {
+         this.axios.get('search?keywords='+data+'&limit=100&type=1').then(res=>
+            this.songs.data = (res.data.result.songs)
+         )
+    },
     //热门搜索
        searchhot() {
         this.axios.get('search/hot').then(res=>{
@@ -58,26 +52,23 @@ components: {
         }
       )
      },
-    //点击热门搜索
-      hotkey(item){
-          let temp = this.$store.state.player;
-          temp.searchKey = item
-          this.$store.commit('setPlayer',temp);
-      }
+  
     },
 
 
-    watch: {
-        //搜索关键词
-        searchKey(newValue, oldValue) {
-            this.axios.get('search?keywords='+newValue+'&limit=100&type=1').then(res=>
-            this.songs.data = (res.data.result.songs)
-         )
-        }   
-    },
+   
 }
 </script>
 
 <style>
-
+.hot-key{
+        margin: 10px;
+        font-size: 16px;
+        color: rgb(73, 71, 71);
+}
+.hot-keys{
+    margin: 10px;
+    padding: 6px;
+    border: 1px dotted #ccc;
+}
 </style>

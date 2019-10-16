@@ -24,7 +24,7 @@ export default {
                 this.axios('song/url?id='+song.id).then(res=>{
 
                 let data = (res.data.data[0]);
-                if(data){
+                if(data && data.url != null){
                     data.name = song.name
                     data.artists = song.artists
                     data.ar = song.ar

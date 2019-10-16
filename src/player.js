@@ -42,6 +42,10 @@ export var  player = {
             onplay:()=>{
                 player.updateProgress()
             },
+            onplayerror :()=>{
+               
+                player.playNext()
+            }
          }) 
     },
 

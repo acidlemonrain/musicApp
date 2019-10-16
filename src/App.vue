@@ -15,7 +15,12 @@
       <input type="text" @focus="gosearch"> -->
       <sidenav  :show=navkey @switch="navkey=false"  />
       <span class="player-ui" @click="navkey=true">    <font-awesome-icon :icon="['fas', 'arrow-circle-right']" />     </span>
-  
+      <span class="search">
+         <input type="text" class="search-input" v-model="searchkey" @focus="gosearch"> 
+         <span class="search-icon" @click="search">
+           <font-awesome-icon :icon="['fas', 'search']" />
+         </span>
+       </span>
     </div>
 
     <div style="margin-top:40px" class="app-content">
@@ -53,11 +58,15 @@ export default {
   },
   data() {
     return {
-      navkey: false
+      navkey: false,
+      searchkey:''
     }
   },
 
     methods: {
+      search(){
+          EventBus.$emit('search',this.searchkey)
+      },
       gosearch() {
           this.$router.push('/search');
       },
@@ -79,6 +88,30 @@ export default {
 <style lang="scss">
  @import './assets/css/main';
   @import './assets/css/utils';
+.search{
+  height: 26px;
+  margin:7px;
+  position: relative;
+  &-input{
+  outline: none;
+  height: 26px;
+  border: 1px solid #ccc;
+  border-radius:10px;
+  font-size: 16px;
+  padding-left:   6px;
+  padding-right:   30px;
+  &:focus{
+    background-color: $primary-light
+  }
+  }
+  &-icon{
+    position: absolute;
+    right: 8px;
+    font-size: 16px;
+    top: 3px;
+    color: $primary
+  }
+}
 .color{
   color: $primary-darken;
 }
@@ -88,6 +121,7 @@ export default {
   width: 100vw;
   height: 40px;
   display: flex;
+  justify-content: space-between;
   z-index: 8;
  box-shadow: 0px 0px 1px #ccc;
   &-item{

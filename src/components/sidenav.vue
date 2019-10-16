@@ -65,7 +65,7 @@ methods: {
     color:$secondary-darken;
     transition:  all .2s;
     &:hover{
-      background-color: $secondary;
+      background-color: $primary;
     }
     &-title{
       height: 40px;
@@ -79,7 +79,7 @@ methods: {
     height: 100vh;
     width: 150px;
     position: absolute;
-    background-color: $primary;
+    background-color: $primary-light;
     box-shadow: 0px 0px 10px black;
   }
  &-page{

@@ -116,16 +116,19 @@ export default {
      var updatewords =  setInterval(() => {
          //
          let my = this.after[this.current]
-         let myTime = moment(my.time,'HH:mm:ss');
-         //
          let next = this.after[(this.current+1)%this.after.length]
+
+         if(my&&next){
          let nextTime = moment(next.time,'HH:mm:ss');
+         let myTime = moment(my.time,'HH:mm:ss');
         //
          let currentTime = moment(this.sec,'HH:mm:ss')
         //
          if( myTime.isBefore(currentTime) &&nextTime.isBefore(currentTime)  ){
              this.current++;    
          } 
+         }
+        
          
           
       }, 1000);
