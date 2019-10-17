@@ -1,9 +1,12 @@
 <template>
   <div>
+      <span  id="top"></span>
       <div class="introduction">
-          
+          <a href="#top" class="totop"> 
+               <font-awesome-icon   :icon="['fas', 'arrow-circle-up']" />
+          </a>
             <div class="info-block">
-                <div class="title">
+            <div class="title">
               简介
           </div>
           <p>
@@ -31,14 +34,21 @@ props:['info']
 }
 </script>
 
-<style>
+<style lang='scss'>
+  @import '../assets/css/main';
+.totop{
+    position: fixed;
+    right: 30px;
+    bottom: 70px;
+    color:$primary-light;
+   font-size: 20px;
+}
 .introduction{
     margin: 10px;
     border: 1px solid #ccc;
     padding: 10px;
 }
 .info-block{
- 
     max-width: 500px;
 
     margin:  auto;

@@ -5,7 +5,7 @@
                <div class="album-info">
                     <div class="album-img-container">
                     <p class="album-name-detail"> {{album.name}} </p>
-                    <img :src=album.coverImgUrl  class="album-img img" >
+                    <img :src=album.coverImgUrl||album.picUrl  class="album-img img" >
                     </div>
                     <p class="album-name"> {{album.name|shorten}} </p>
                </div>   

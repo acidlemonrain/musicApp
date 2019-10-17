@@ -66,6 +66,7 @@ export default {
     methods: {
       search(){
           EventBus.$emit('search',this.searchkey)
+          this.$router.push('/search');
       },
       gosearch() {
           this.$router.push('/search');
@@ -109,7 +110,8 @@ export default {
     right: 8px;
     font-size: 16px;
     top: 3px;
-    color: $primary
+    color: $primary;
+    cursor: pointer;
   }
 }
 .color{

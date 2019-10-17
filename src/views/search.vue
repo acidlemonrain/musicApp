@@ -8,7 +8,22 @@
     </div>
 
     
-           <songsVue v-show="songs.data" :songs=songs.data />
+          <div  v-show="data">
+              <div>
+                    <p> 
+                      
+                        <span class="search-type" @click="type=1">单曲</span>
+                        <!-- <span class="search-type" @click="type=10">专辑</span> -->
+                        <span class="search-type" @click="type=100">歌手</span>
+                        <span class="search-type" @click="type=1000">歌单</span>
+                    </p>
+              </div>
+
+               <songs-vue v-if="type == 1" :songs=data.result.songs />
+               <songers-vue v-if="type == 100" :songers=data.result.artists /> 
+               
+               <albums-vue v-if="type == 1000" :albums=data.result.playlists /> 
+          </div>
   
 
 
@@ -17,19 +32,23 @@
 
 <script>
 import songsVue from '../components/songs.vue';
+import songersVue from '../components/songers.vue';
+import albumsVue from '../components/albums.vue';
 import {EventBus} from '../main';
 export default {
 components: {
-    songsVue,
+    songsVue,songersVue,albumsVue
 },
     data() {
         return {
             hotKeys: {
                 data:null
             },
-            songs:{
-                data:null
-            }
+            key:'',
+           data:{
+                 result:{}
+            },
+            type:1
         }
     },
     //init
@@ -41,8 +60,12 @@ components: {
  
     methods: {
     search(data) {
-         this.axios.get('search?keywords='+data+'&limit=100&type=1').then(res=>
-            this.songs.data = (res.data.result.songs)
+         this.axios.get('search?keywords='+data+'&limit=100&type='+this.type).then(res=>{
+            this.key = data
+            this.data = (res.data)
+            console.log(this.data);
+            
+         }
          )
     },
     //热门搜索
@@ -55,12 +78,24 @@ components: {
   
     },
 
+    watch: {
+        type(newValue, oldValue) {
+            this.search(this.key)
+        }
+    },
 
    
 }
 </script>
 
 <style>
+.search-type{
+    margin: 7px;
+    border: 1px solid #ccc
+}
+.search-type:hover{
+    border: 1px solid lightcoral
+}
 .hot-key{
         margin: 10px;
         font-size: 16px;

@@ -1,9 +1,10 @@
 <template>
-  <div class="bg-primary playlist"  :class={hide:show} >
-          <p style="border:1px solid black">播放列表</p>
-          <div @click="play(item)" v-for="(item,index) in playlist" :class="{current:item.id == current}" :key="index"    >
-          {{ item.name }}
-          </div>
+  <div class="  playlist"  :class={hide:show} >
+          <p style="border:1px solid #ccc " class="bg-primary">播放列表</p>
+         
+         <div class="playlist-songs" >
+            <songsVue  :songs=playlist />
+         </div>
      
   </div>
 </template>
@@ -12,8 +13,13 @@
 import {player} from '../player';
 import { mapState } from 'vuex'
 import {EventBus} from '../main';
+import songsVue from './songs.vue';
+
 export default {
   props: ['show'],
+  components: {
+    songsVue,
+  },
   computed: mapState({
     // arrow functions can make the code very succinct!
     playlist: state => state.player.data.srcs,
@@ -32,7 +38,8 @@ export default {
 </script>
 
 <style lang='scss'>
- 
+  @import '../assets/css/main';
+  @import '../assets/css/utils';
 .playlist{
     position: fixed;
     bottom: 40px;
@@ -40,10 +47,19 @@ export default {
     width: 500px;
     right: 0px;
     height: 70vh;
-    overflow-y: scroll;
-    
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0px 0px 10px #ccc;
+    border: 1px solid #ccc;
+    background-color: $primary-light;
     transition: all .3s;
     opacity: 1;
+    &-songs{
+      overflow-y: scroll;
+      height: 10px;
+      flex-grow: 1;
+    }
 }
 .hide{
  transform: translate(520px,70vh);

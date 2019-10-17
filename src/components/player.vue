@@ -110,6 +110,9 @@ export default {
         color:$primary;
         outline: none;
         border: none;
+        &:hover{
+             color: $primary-darken
+        }
     }
     &-progress{
         height: 40px;

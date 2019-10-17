@@ -26,6 +26,7 @@ props: ['songers']
 }
 .songers-box{
     width: 70%;
+    margin: auto
 }
 @media screen and (max-width: 650px) {
 .songers-box{
