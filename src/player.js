@@ -9,7 +9,8 @@ export var  player = {
         index:0,
         song:{},
         progress : 0,
-        sec:0
+        sec:0,
+        hyc:0
     },
 
     getNext:()=>{
@@ -28,7 +29,6 @@ export var  player = {
 
     playNext:()=>{
         console.log('音乐开始');
-        
         if(player.data.sound){
             player.data.sound.unload()
         }
@@ -40,7 +40,6 @@ export var  player = {
                 player.playNext()
             },
             onplay:()=>{
-                player.updateProgress()
             },
             onplayerror :()=>{
                
@@ -50,10 +49,12 @@ export var  player = {
     },
 
     updateProgress:()=>{
-        player.data.progress = player.data.sound.seek()*100/player.data.sound.duration()
-        requestAnimationFrame(player.updateProgress);
-        (player.data.sec = player.data.sound.seek());
-        
+        if(player.data.sound){
+            player.data.progress = player.data.sound.seek()*100/player.data.sound.duration()
+            requestAnimationFrame(player.updateProgress);
+            (player.data.sec = player.data.sound.seek());
+        }
+
     },
 
 
@@ -79,7 +80,7 @@ export var  player = {
                   player.playNext()
               },
               onplay:()=>{
-                  player.updateProgress(); 
+                 
               },
            }) 
        

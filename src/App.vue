@@ -52,7 +52,7 @@ export default {
   mounted () {
     this.progressAnimation();
     EventBus.$on('play', song => {
-   player.play(song);
+    player.play(song);
       this.$store.commit('setPlayer',player.data);
     })
   },
@@ -77,7 +77,8 @@ export default {
       },
       progressAnimation(){
           requestAnimationFrame(this.progressAnimation);
-         this.$store.commit('setPlayer',player.data);
+          this.$store.commit('setPlayer',player.data);
+          player.updateProgress()
       },
 
     }
