@@ -50,13 +50,13 @@ export default {
     computed: mapState({
     user: state => state.user,
     song:state => state.player.song ,
-  loop:state => state.player.loop ,
+    loop:state => state.player.loop ,
   }),
   components: {
      playerVue,sidenav
   },
   mounted () {
-
+      this.player = this.$store.state.player.mp3;
       this.player.addEventListener('timeupdate',()=>{
            if(this.player.src){
             this.$store.commit('setSec',this.player.currentTime)
@@ -72,7 +72,7 @@ export default {
     return {
       navkey: false,
       searchkey:'',
-      player:new Audio(),
+      player:null,
       paused :false
     }
   },

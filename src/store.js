@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
       player:{
+        mp3:new Audio(),
         sec:0,
         playlist:[],
         song:null,
