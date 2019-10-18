@@ -104,6 +104,7 @@ export default {
     watch: {
       song(to, from) {
           this.player.src = to.url;
+          this.player.load()
           this.player.play()
       },
       loop(to, from) {
@@ -182,7 +183,7 @@ export default {
   &-container{
     height: 100vh;
     width: 100vw;
-    
+
   }
 }
 
