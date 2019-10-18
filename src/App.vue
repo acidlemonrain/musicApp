@@ -1,8 +1,8 @@
 <template>
   <div id="app">
 
-  
- 
+    <div class="app-container">
+      
     <div class="nav">
    
       <!-- <router-link to="/" class="nav-item bg-primary ">热门歌手</router-link>
@@ -34,6 +34,9 @@
  
 
 
+    </div>
+  
+ 
   </div>
 </template>
 <script>
@@ -175,6 +178,11 @@ export default {
   position: relative;
   overflow-y: scroll;
  
+  }
+  &-container{
+    height: 100vh;
+    width: 100vw;
+    
   }
 }
 
