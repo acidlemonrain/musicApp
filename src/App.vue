@@ -1,7 +1,8 @@
 <template>
   <div id="app">
+     <div class="app-box">
 
-    <div class="app-container">
+   
       
     <div class="nav">
    
@@ -33,10 +34,10 @@
 <playerVue :pause=paused @playorstop=playorstop @volume=volume  />
  
 
-
-    </div>
+ 
   
  
+  </div>
   </div>
 </template>
 <script>
@@ -164,13 +165,18 @@ export default {
     color:rgba(0, 0, 0, 0.554);
   }
 }
-#app{
+.app-box{
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
   width: 100vw;
 
+}
+#app{
+  height: 100vh;
+  width: 100vw;
+    overflow: hidden;
 }
 .app{
   &-content{
