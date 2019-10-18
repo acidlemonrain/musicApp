@@ -57,7 +57,8 @@ export default {
   },
   mounted () {
       this.player = this.$store.state.player.mp3;
-   
+    //  this.player = new Audio().autoplay = true
+      this.player.autoplay = true
     
       this.player.addEventListener('timeupdate',()=>{
            if(this.player.src){
@@ -107,21 +108,9 @@ export default {
     watch: {
       song(to, from) {
           this.player.src = to.url;
-          this.player.load()
 
-        var loop =  ()=>{
-          if(!this.player.paused){
-            
-          }else{
-             setTimeout(() => {
-             this.player.play()
-           
-             
-             loop()
-          }, 1000);
-          }
-        }
-        loop()
+       
+         
 
       },
       loop(to, from) {
