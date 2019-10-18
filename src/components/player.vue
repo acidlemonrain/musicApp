@@ -3,33 +3,40 @@
       <playlistVue  :show=!show  :class="{listshow:show}" />
       <div class="player-box" >
         
-          <div class="player-ui" @click="play()" v-if="player.sound">
+          <div class="player-ui" @click=playorstop >
               
-              <span v-show="player.sound.playing()">
+              <span v-show="pause">
                   <font-awesome-icon :icon="['fas', 'pause-circle']" />
               </span>
-              <span v-show="!player.sound.playing()">
+              <span v-show="!pause">
                     <font-awesome-icon :icon="['fas', 'play-circle']" />
+                 
+              </span>
+            
+          </div>
+          <div class="player-ui" @click="next">
+                <span >
+                    <font-awesome-icon :icon="['fas', 'arrow-right']" />
                  
               </span>
           </div>
           <div class="player-progress">
-              <div class="player-song">
-                  {{player.song.name}} 
+              <div class="player-song" v-if="song">
+                  {{ song.name}} 
                   
                   <span style='color:#ccc'>
                       -
-                  <span v-for="item in  player.song.artists" :key="item.id">
+                  <span v-for="item in  song.artists" :key="item.id">
                       {{ item.name }}
                   </span>
-                    <span v-for="item in  player.song.ar" :key="item.id">
+                    <span v-for="item in   song.ar" :key="item.id">
                       {{ item.name }}
                   </span>
                   </span>
                   
               </div>
               <div class="player-progress-line-mask">
-                   <div class="player-progress-line" :style="{width:player.progress+'%'}">
+                   <div class="player-progress-line" :style="{width:progress +'%'}">
                   <div class="player-progress-line-ball"></div>
               </div>
               </div>
@@ -53,8 +60,19 @@ import playlistVue from './playlist';
 import { mapState } from 'vuex'
 import {player}  from '../player';
 export default {
+    props: {
+        pause: {
+            type: Boolean,
+            default: false
+        },
+    },
    computed: mapState({
-    player: state => state.player.data
+    sec: state => state.player.sec,
+    dur:state => state.player.dur,
+    song:state => state.player.song,
+    progress(){
+        return this.sec*100/this.dur
+    }
   }),
     components: {
         playlistVue,
@@ -67,18 +85,17 @@ export default {
         }
     },
     methods: {
-        play() {
-            if(player.data.sound.playing()){
-                        player.data.sound.pause();
-            }else{
-                    player.data.sound.play();
-            }
-    
+        playorstop() {
+           
+           this.$emit('playorstop')
+        },
+        next(){
+            this.$store.commit('playNext',null)
         }
     },
     watch: {
         volume(to, oldValue) {
-            this.player.sound.volume(to)
+              this.$emit('volume',to)
         }
     },
   

@@ -19,7 +19,11 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { faArrowCircleUp } from '@fortawesome/free-solid-svg-icons'
-library.add(faArrowCircleUp,faSearch,faPlayCircle,faPauseCircle,faBars,faArrowCircleLeft,faArrowCircleRight,faFire,faDrum,faMusic,faUser,faUserCircle)
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faRandom } from '@fortawesome/free-solid-svg-icons'
+import { faListOl } from '@fortawesome/free-solid-svg-icons'
+import {  faDiceOne} from '@fortawesome/free-solid-svg-icons'
+library.add(faDiceOne,faListOl,faRandom,faArrowRight,faArrowCircleUp,faSearch,faPlayCircle,faPauseCircle,faBars,faArrowCircleLeft,faArrowCircleRight,faFire,faDrum,faMusic,faUser,faUserCircle)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 export const EventBus = new Vue();

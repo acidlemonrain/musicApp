@@ -7,12 +7,13 @@
                     <img class="music-img" :src="detail.al.picUrl" alt="" srcset="" height="50%" width="50%" style="border-radius:50%">
                           <div class="title"> 
                         {{song.name}}
+                        {{sec}}
                     </div>
                    </div>
                 </div>
                
                 <div class="music-info-lrc">
-                     <div v-for="(item,index) in  after"  :class='{primary: index == current}' :key="index">
+                     <div v-for="(item,index) in  after"    :class='{primary:iscurrent(item,after[index+1])}' :key="index">
                         {{ item.words }}
                      </div>
               </div>
@@ -55,13 +56,9 @@ export default {
         commentVue,songsVue
     },
     computed: mapState({
-    player: state => state.player.data,
-    song(){
-        return this.player.song
-    },
-     sec() {
-         return  moment.utc(this.player.sec*1000).format('HH:mm:ss')
-     },
+    sec: state =>  moment.utc(state.player.sec*1000).format('HH:mm:ss'),
+    song:state => state.player.song,
+ 
      after(){
          let raw = this.lrc.match(/\[.*\s/g)
          let datas = []
@@ -93,45 +90,65 @@ export default {
      this.init()
   },
   methods: {
+      iscurrent(time,ntime){
+      
+          if(time&&ntime&&time.time && ntime.time){
+               time = moment(time.time,'HH:mm:ss')
+                ntime = moment(ntime.time,'HH:mm:ss')
+                let now = moment(this.sec,'HH:mm:ss') 
+             if( time.isBefore(now) &&now.isBefore(ntime)  ){
+                  return true;
+             }else{
+                 console.log({theone:time,thenext:ntime,now:now});
+                 return false;
+             }   
+          }else{
+              return false
+          }
+            
+      },
       init() {
              this.current = 0;
-           this.axios.get('song/detail?ids='+this.player.song.id).then(res=>{
+           this.axios.get('song/detail?ids='+this.song.id).then(res=>{
           this.detail = res.data.songs[0]
       })
       
-      this.axios.get('lyric?id='+this.player.song.id).then(res=>{    
+
+      this.axios.get('lyric?id='+this.song.id).then(res=>{    
          this.lrc = (res.data.lrc.lyric)
       })
 
-        this.axios.get('comment/music?id='+this.player.song.id).then(res=>{     
+
+        this.axios.get('comment/music?id='+this.song.id).then(res=>{     
          this.comments = (res.data.comments)
       })
 
-        this.axios.get('simi/song?id='+this.player.song.id).then(res=>{
+
+        this.axios.get('simi/song?id='+this.song.id).then(res=>{
             this.relates = res.data.songs
         })
       }
   },
   mounted () {
-     var updatewords =  setInterval(() => {
-         //
-         let my = this.after[this.current]
-         let next = this.after[(this.current+1)%this.after.length]
+    //  var updatewords =  setInterval(() => {
+    //      //
+    //      let my = this.after[this.current]
+    //      let next = this.after[(this.current+1)%this.after.length]
 
-         if(my&&next){
-         let nextTime = moment(next.time,'HH:mm:ss');
-         let myTime = moment(my.time,'HH:mm:ss');
-        //
-         let currentTime = moment(this.sec,'HH:mm:ss')
-        //
-         if( myTime.isBefore(currentTime) &&nextTime.isBefore(currentTime)  ){
-             this.current++;    
-         } 
-         }
+    //      if(my&&next){
+    //      let nextTime = moment(next.time,'HH:mm:ss');
+    //      let myTime = moment(my.time,'HH:mm:ss');
+    //     //
+    //      let currentTime = moment(this.sec,'HH:mm:ss')
+    //     //
+    //      if( myTime.isBefore(currentTime) &&nextTime.isBefore(currentTime)  ){
+    //          this.current++;    
+    //      } 
+    //      }
         
          
           
-      }, 1000);
+    //   }, 1000);
   },
   watch: {
       song(newValue, oldValue) {

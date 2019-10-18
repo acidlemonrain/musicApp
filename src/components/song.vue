@@ -6,21 +6,21 @@
               {{song.name}}
          </span> 
 
-          <span class="text-gray-600" v-for="alia in song.alia" :key=alia>
+          <span class="text-gray" v-for="alia in song.alia" :key=alia>
                {{alia}}
            </span>
 
 
-          <span class="text-gray-600" v-for="artist in song.ar" :key=artist.id>
+          <span class="text-gray" v-for="artist in song.ar" :key=artist.id>
                {{artist.name}}
            </span>
 
-           <span class="text-gray-600" v-for="artist in song.artists" :key=artist.id>
+           <span class="text-gray" v-for="artist in song.artists" :key=artist.id>
                {{artist.name}}
            </span>
     </p>
     <p>
-        <span class="text-orange-500" v-for="alia in song.alias" :key="alia">
+        <span class="text-orange" v-for="alia in song.alias" :key="alia">
                 {{alia}}
         </span>
     </p>
@@ -45,7 +45,7 @@ export default {
                     data.name = this.song.name;
                     data.artists = this.song.artists
                     data.ar = this.song.ar
-                    EventBus.$emit('play',data);
+                         this.$store.commit('playSong',data)
                 }else{
                     alert('该歌曲无法播放')
                 }
@@ -59,7 +59,19 @@ export default {
 
 <style lang='scss'>
 @import '../assets/css/main';
+.song{
+    padding: 5px 5px;
+   
+}
  .song:hover{
      background-color: $primary-light;
+ }
+ .text{
+     &-gray{
+         color: gray;
+     }
+     &-orange{
+         color: rgb(231, 170, 129);
+         }
  }
 </style>

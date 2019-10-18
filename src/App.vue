@@ -4,7 +4,7 @@
   
  
     <div class="nav">
-
+   
       <!-- <router-link to="/" class="nav-item bg-primary ">热门歌手</router-link>
       <router-link to="/albums" class="nav-item bg-primary-darken">热门歌单</router-link>
       <router-link to="/about" class="nav-item bg-primary">测试页面</router-link>
@@ -13,6 +13,7 @@
       <router-link to="/user" class="nav-item bg-secondary" v-show="user != null">用户中心</router-link>
       <button  @click="logout" class="nav-item bg-secondary" v-show="user != null">注销</button>
       <input type="text" @focus="gosearch"> -->
+   
       <sidenav  :show=navkey @switch="navkey=false"  />
       <span class="player-ui" @click="navkey=true">    <font-awesome-icon :icon="['fas', 'arrow-circle-right']" />     </span>
       <span class="search">
@@ -24,65 +25,88 @@
     </div>
 
     <div style="margin-top:40px" class="app-content">
-     <keep-alive>
+     
         <router-view/>
-     </keep-alive>
+    
     </div>
 
-<playerVue/>
+<playerVue :pause=paused @playorstop=playorstop @volume=volume  />
  
 
 
   </div>
 </template>
 <script>
-
-import {player}  from './player';
+ 
 import {EventBus} from './main';
 import { mapState } from 'vuex'
 import playerVue from './components/player.vue';
 import sidenav from './components/sidenav.vue';
 export default {
     computed: mapState({
-    user: state => state.user
+    user: state => state.user,
+    song:state => state.player.song ,
+  loop:state => state.player.loop ,
   }),
   components: {
      playerVue,sidenav
   },
   mounted () {
-    this.progressAnimation();
-    EventBus.$on('play', song => {
-    player.play(song);
-      this.$store.commit('setPlayer',player.data);
-    })
+
+      this.player.addEventListener('timeupdate',()=>{
+           if(this.player.src){
+            this.$store.commit('setSec',this.player.currentTime)
+            this.$store.commit('setDur',this.player.duration)
+            this.paused = this.player.paused
+          }
+      })
+      this.player.onended=()=>{
+         this.$store.commit('playNext',null)
+      }
   },
   data() {
     return {
       navkey: false,
-      searchkey:''
+      searchkey:'',
+      player:new Audio(),
+      paused :false
     }
   },
-
     methods: {
+      volume(event){
+       this.player.volume = Number(event)
+        
+      },
+      playorstop(){
+      if(this.player.paused){
+          this.player.play()
+      }else{
+          this.player.pause()
+      }
+      },
       search(){
           EventBus.$emit('search',this.searchkey)
           this.$router.push('/search');
+         
       },
       gosearch() {
           this.$router.push('/search');
       },
       logout(){
        this.$store.commit('setUser',null);
-      
       },
-      progressAnimation(){
-          requestAnimationFrame(this.progressAnimation);
-          this.$store.commit('setPlayer',player.data);
-          player.updateProgress()
-      },
+ 
 
-    }
-    
+    },
+    watch: {
+      song(to, from) {
+          this.player.src = to.url;
+          this.player.play()
+      },
+      loop(to, from) {
+          this.player.currentTime = 0
+      }
+    },
     }
  
 </script>

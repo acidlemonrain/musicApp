@@ -1,7 +1,18 @@
 <template>
   <div class="  playlist"  :class={hide:show} >
-          <p style="border:1px solid #ccc " class="bg-primary">播放列表</p>
-         
+          <p style="border:1px solid #ccc ;margin-bottom:5px"  >
+             
+             <span class="player-ui"  v-if="mode == 'random'" @click="setmode('list')">
+                  <font-awesome-icon :icon="['fas', 'random']" />随机循环
+             </span>
+              <span class="player-ui"  v-if="mode == 'list'"  @click="setmode('loop')">
+                  <font-awesome-icon :icon="['fas', 'list-ol']" />列表循环
+             </span>
+              <span class="player-ui"  v-if="mode == 'loop'"  @click="setmode('random')">
+                  <font-awesome-icon :icon="['fas', 'dice-one']" />单曲循环
+             </span>
+             </p>
+           
          <div class="playlist-songs" >
             <songsVue  :songs=playlist />
          </div>
@@ -10,10 +21,11 @@
 </template>
 
 <script>
-import {player} from '../player';
+ 
 import { mapState } from 'vuex'
 import {EventBus} from '../main';
 import songsVue from './songs.vue';
+ 
 
 export default {
   props: ['show'],
@@ -21,16 +33,16 @@ export default {
     songsVue,
   },
   computed: mapState({
-    // arrow functions can make the code very succinct!
-    playlist: state => state.player.data.srcs,
-    current: state => state.player.data.song.id
-    
+    playlist: state => state.player.playlist,
+    song : state => state.player.song,
+    mode: state => state.player.mode,
   }),
 
 
     methods: {
-      play(data) {
-                  EventBus.$emit('play',data);
+      setmode(data) {
+       
+        this.$store.commit('setMode',data)
      }
     },
   
@@ -52,7 +64,7 @@ export default {
     padding: 10px;
     box-shadow: 0px 0px 10px #ccc;
     border: 1px solid #ccc;
-    background-color: $primary-light;
+ background-color: white;
     transition: all .3s;
     opacity: 1;
     &-songs{
@@ -66,8 +78,5 @@ export default {
   opacity: 0;
   z-index: 0;
 }
-.current{
-    color: #ccc;
-    background-color: black;
-}
+
 </style>

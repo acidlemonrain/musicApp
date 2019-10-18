@@ -1,6 +1,4 @@
-import {Howl, Howler} from 'howler';
-
-
+ 
 export var  player = {
     data:{
         sound : null,
