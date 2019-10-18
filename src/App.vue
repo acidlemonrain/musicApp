@@ -57,6 +57,11 @@ export default {
   },
   mounted () {
       this.player = this.$store.state.player.mp3;
+   
+      
+      this.player.addEventListener('load',()=>{
+          this.player.play()
+      })
       this.player.addEventListener('timeupdate',()=>{
            if(this.player.src){
             this.$store.commit('setSec',this.player.currentTime)
@@ -106,7 +111,6 @@ export default {
       song(to, from) {
           this.player.src = to.url;
           this.player.load()
-          this.player.play()
       },
       loop(to, from) {
           this.player.currentTime = 0
