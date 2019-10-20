@@ -3,8 +3,8 @@
     <div class="flex-item">
       <div class="box">
           <div class="switch">
-              <span @click="songmode=true" class="btn" style="margin-right:10px">热门歌曲</span>
-              <span @click="songmode=false" class="btn" >歌手信息</span>
+              <button @click="songmode=true" class="btn btn-second" style="margin-right:10px">热门歌曲</button>
+              <button @click="songmode=false" class="btn btn-second" >歌手信息</button>
           </div>
           <songerInfoVue v-show="!songmode" :info=info />
           <songsVue v-show="songmode" :songs=songs />

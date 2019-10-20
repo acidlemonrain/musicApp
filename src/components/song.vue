@@ -56,7 +56,7 @@ export default {
           data.artists = this.song.artists;
           data.ar = this.song.ar;
           if(x == true){
-              alert(';play')
+
               this.$store.commit("playSong", data);
           }else{
               this.$store.commit("addSong", data);

@@ -92,6 +92,10 @@ export default {
   },
   methods: {
     init() {
+      this.info = false
+      this.relates = []
+      this.comments =[]
+      this.more =false
       this.axios
         .get("playlist/detail?id=" + this.$route.params.id)
         .then(res => {

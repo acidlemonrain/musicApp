@@ -16,13 +16,14 @@
                         <!-- <span class="search-type" @click="type=10">专辑</span> -->
                         <span class="search-type" @click="type=100">歌手</span>
                         <span class="search-type" @click="type=1000">歌单</span>
+                        <span class="search-type" @click="type=1004">MV</span>
                     </p>
               </div>
 
                <songs-vue v-if="type == 1" :songs=data.result.songs />
-               <songers-vue v-if="type == 100" :songers=data.result.artists /> 
-               
-               <albums-vue v-if="type == 1000" :albums=data.result.playlists /> 
+               <songers-vue v-if="type == 100" :songers=data.result.artists />
+               <mvs v-if="type == 1004" :mvs=data.result.mvs />
+              <albums-vue v-if="type == 1000" :albums=data.result.playlists />
           </div>
   
 
@@ -34,10 +35,11 @@
 import songsVue from '../components/songs.vue';
 import songersVue from '../components/songers.vue';
 import albumsVue from '../components/albums.vue';
+import mvs from "../components/mv/mvs";
 import {EventBus} from '../main';
 export default {
 components: {
-    songsVue,songersVue,albumsVue
+    songsVue,songersVue,albumsVue,mvs
 },
     data() {
         return {

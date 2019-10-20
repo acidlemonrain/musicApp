@@ -3,6 +3,11 @@
       <div class="user-profile">
        
         <div class="card-box">
+
+
+
+
+
             <p class="user-title"> 基本信息 </p>
                <div class="user-basic">
                <img :src=user.profile.avatarUrl class="user-avatar" >
@@ -43,7 +48,9 @@ export default {
           dailySongs:[]
       }
   },
+
   created () {
+
       this.axios.get('user/playlist?uid='+this.user.profile.userId).then(res=>{
           this.collection = (res.data.playlist);
       })

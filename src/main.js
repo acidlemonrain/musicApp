@@ -27,7 +27,8 @@ import {  faSpinner} from '@fortawesome/free-solid-svg-icons'
 import {  faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import {  faCaretUp} from '@fortawesome/free-solid-svg-icons'
 import {  faPlus} from '@fortawesome/free-solid-svg-icons'
-library.add(faPlus,faCaretUp,faCaretDown,faSpinner,faDiceOne,faListOl,faRandom,faArrowRight,faArrowCircleUp,faSearch,faPlayCircle,faPauseCircle,faBars,faArrowCircleLeft,faArrowCircleRight,faFire,faDrum,faMusic,faUser,faUserCircle)
+import {  faVideo} from '@fortawesome/free-solid-svg-icons'
+library.add(faVideo,faPlus,faCaretUp,faCaretDown,faSpinner,faDiceOne,faListOl,faRandom,faArrowRight,faArrowCircleUp,faSearch,faPlayCircle,faPauseCircle,faBars,faArrowCircleLeft,faArrowCircleRight,faFire,faDrum,faMusic,faUser,faUserCircle)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 export const EventBus = new Vue();

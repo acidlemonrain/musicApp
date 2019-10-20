@@ -1,5 +1,5 @@
 <template>
-  <div class="  playlist"  :class={hide:show} >
+  <div class="playlist"    :class={hide:show} >
           <p style="border:1px solid #ccc ;margin-bottom:5px"  >
              
              <span class="player-ui"  v-if="mode == 'random'" @click="setmode('list')">
@@ -56,7 +56,6 @@ export default {
     position: fixed;
     bottom: 40px;
     z-index: 999;
-    width: 500px;
     right: 0px;
     height: 70vh;
     display: flex;
@@ -64,9 +63,10 @@ export default {
     padding: 10px;
     box-shadow: 0px 0px 10px #ccc;
     border: 1px solid #ccc;
- background-color: white;
+    background-color: white;
     transition: all .3s;
     opacity: 1;
+    width: 650px;
     &-songs{
       overflow-y: scroll;
       height: 10px;
@@ -74,9 +74,18 @@ export default {
     }
 }
 .hide{
- transform: translate(520px,70vh);
+ transform: translate(650px);
   opacity: 0;
   z-index: 0;
 }
+  @media screen and (max-width: 650px) {
+      .hide{
+          transform: translate(100vw);
+      }
+      .playlist{
+          width: 100vw;
+      }
+
+  }
 
 </style>

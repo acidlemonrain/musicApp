@@ -1,6 +1,8 @@
 <template>
-  <div>      
-      <button class="btn" @click="playAll" v-show="isbtn">播放全部</button>
+  <div v-show="songs.length>0">
+      <div style="display: flex;justify-content: end">
+          <button class="btn"  @click="playAll" v-show="isbtn" style="margin-bottom: 7px; ">播放全部</button>
+      </div>
     
       <div class="songs "  >
           <song-vue v-for="(item,index) in songs"  :is-ui="isbtn"  :song=item :key=item.id      :class="{space:index % 2 == 0,current:(song && item.id == song.id) }" />

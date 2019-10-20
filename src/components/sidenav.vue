@@ -10,9 +10,9 @@
            <div class="nav-ui" @click="goto('albums')">
            <font-awesome-icon :icon="['fas', 'drum']" /> 热门歌单
           </div>
-<!--            <div class="nav-ui" @click="goto('music')">-->
-<!--           <font-awesome-icon :icon="['fas', 'music']" /> 音乐-->
-<!--          </div>-->
+            <div class="nav-ui" @click="goto('mvs')">
+           <font-awesome-icon :icon="['fas', 'video']" /> mv
+          </div>
             <div class="nav-ui" @click="goto('login')" v-show="user == null">
            <font-awesome-icon :icon="['fas', 'user']" /> 登录
           </div>

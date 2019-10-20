@@ -56,10 +56,11 @@ export default {
      playerVue,sidenav
   },
   mounted () {
-      this.player = this.$store.state.player.mp3;
-      this.player = new Audio() 
+
+      this.player = new Audio()
       this.player.autoplay = true
       this.player.onerror = (e)=>{
+          alert('错误')
          this.$store.commit('playNext',null)
       }
       this.player.addEventListener('timeupdate',()=>{

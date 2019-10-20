@@ -1,6 +1,6 @@
 <template>
   <div class="player" v-if="song">
-      <playlistVue  :show=!show  :class="{listshow:show}" />
+      <playlistVue  :show=!show    />
       <div class="player-box" >
             <router-link   class="song-img" to="/music">
                 <img :src="song.img" alt="" height="40px"  width="40px" >
@@ -23,11 +23,15 @@
               </span>
           </div>
           <div class="player-progress">
-              <div class="player-song" v-if="song">
-                  {{ song.name}} 
-                  
-                  <span style='color:#ccc'>
-                      -
+
+
+
+              <div class="player-song  "  style=" overflow-x: hidden" v-if="song">
+
+                  <p class="song-txt  " style=" display: inline-block; width: 1000px" ref="txt">
+
+                      <span> {{ song.name}}</span>
+                      <span style='color:#ccc'>
                   <span v-for="item in  song.artists" :key="item.id">
                       {{ item.name }}
                   </span>
@@ -35,6 +39,7 @@
                       {{ item.name }}
                   </span>
                   </span>
+                  </p>
                   
               </div>
               <div class="player-progress-line-mask">
@@ -80,7 +85,20 @@ export default {
     playlistLen :state => state.player.playlist.length,
     progress(){
         return this.sec*100/this.dur
-    }
+    },
+     infotxtlength(){
+        let len = 0
+         if(Array.isArray(this.song.ar))
+        this.song.ar.forEach(ele=>{
+            len+=ele.name.length
+        })
+         if (Array.isArray(this.song.artists)){
+             this.song.artists.forEach(ele=>{
+                 len+=ele.name.length
+             })
+         }
+        return this.song.name.length+len
+     }
   }),
     components: {
         playlistVue,
@@ -104,6 +122,11 @@ export default {
 
     },
     watch: {
+        song(to){
+            setTimeout(()=>{
+                this.$refs.txt.style.width = this.infotxtlength*10+70 +'px';
+            },500)
+        },
         volume(to, from) {
               this.$emit('volume',to)
         },
@@ -155,6 +178,7 @@ export default {
         margin-top: 5px;
         font-size: 16px;
         color: black;
+        width: 400px;
     }
     &-box{
         height: 100%;
@@ -168,6 +192,7 @@ export default {
         color:$primary;
         outline: none;
         border: none;
+        cursor: pointer;
         &:hover{
              color: $primary-darken
         }
@@ -198,7 +223,31 @@ export default {
         }
     }
 }
-.listshow{
-    width: 200px;
-}
+  @media screen and (max-width: 650px) {
+      .player-song{
+          font-size: 10px;
+          width: 100px;
+      }
+
+  }
+    .song-txt{
+
+        animation: move 40s infinite linear
+
+    }
+    @keyframes move  {
+        0%{
+            transform: translate(-60%,0);
+        }
+        25%{
+            transform: translate(0%,0);
+        }
+        75%{
+            transform: translate(60%,0);
+        }
+        100%{
+            transform: translate(0%,0);
+        }
+    }
+
 </style>

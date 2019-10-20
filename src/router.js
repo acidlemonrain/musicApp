@@ -50,6 +50,14 @@ const router =  new Router({
       path: '/songer/:id',
       component: () => import('./views/songer.vue'),
     },
+    {
+      path: '/mvs',
+      component: () => import('./views/mvs.vue'),
+    },
+    {
+      path: '/mv/:id',
+      component: () => import('./views/mv.vue'),
+    },
   ]
 })
 router.beforeEach((to, from, next) => {

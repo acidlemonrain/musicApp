@@ -28,59 +28,5 @@ props: ['album'],
 
 
 <style lang='scss'>
-@media screen and (max-width: 650px) {
-    .album{
-        padding: 0px;
-        &-name{
-            font-size: 10px;
-        }
-          &-img{
-               height: 100px !important;
-               width: 100px  !important;
-               &-container{
-                       height: 100px !important;
-                       width: 100px  !important;
-               }
-          }
-    }
-}
-.album{
-    padding: 10px;
-    &s{
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
 
-    }
-    &-img{
-         height: 150px;
-         width: 150px;
-        background-color: #ccc;
-    }
-    &-info{
-        display: flex;
-        flex-direction: column;
-    }
-    &-name-detail{
-        position: absolute;
-        background-color: rgba(31, 24, 24, 0.808);
-        height: 100%;
-        width: 100%;
-        opacity: 0;
-        display: inline-block;
-        transition: all .3s;
-        color: whitesmoke;
-        font-weight: bold
-    }
-    &-img-container{
-         height: 150px;
-         width: 150px;
-         position: relative;
-        &:hover .album-name-detail{
-        opacity: 1;
-        display: inline-block;
-    }
-    }
-   
-}
 </style>
