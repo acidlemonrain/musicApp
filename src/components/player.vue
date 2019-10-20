@@ -1,10 +1,12 @@
 <template>
-  <div class="player"  >
+  <div class="player" v-if="song">
       <playlistVue  :show=!show  :class="{listshow:show}" />
       <div class="player-box" >
-        
+            <router-link   class="song-img" to="/music">
+                <img :src="song.img" alt="" height="40px"  width="40px" >
+            </router-link>
           <div class="player-ui" @click=playorstop >
-              
+
               <span v-show="pause">
                   <font-awesome-icon :icon="['fas', 'pause-circle']" />
               </span>
@@ -49,6 +51,11 @@
                 <span>
               <font-awesome-icon :icon="['fas', 'bars']" />
                 </span>
+
+                <div v-if="ispop">
+                    <span class="popui" > {{playlistLen}} </span>
+                </div>
+
             </div>
       </div>
   </div>
@@ -58,7 +65,7 @@
  
 import playlistVue from './playlist';
 import { mapState } from 'vuex'
-import {player}  from '../player';
+
 export default {
     props: {
         pause: {
@@ -70,6 +77,7 @@ export default {
     sec: state => state.player.sec,
     dur:state => state.player.dur,
     song:state => state.player.song,
+    playlistLen :state => state.player.playlist.length,
     progress(){
         return this.sec*100/this.dur
     }
@@ -81,7 +89,8 @@ export default {
     data() {
         return {
             show: false,
-            volume:1
+            volume:1,
+            ispop:false,
         }
     },
     methods: {
@@ -91,11 +100,23 @@ export default {
         },
         next(){
             this.$store.commit('playNext',null)
-        }
+        },
+
     },
     watch: {
-        volume(to, oldValue) {
+        volume(to, from) {
               this.$emit('volume',to)
+        },
+        playlistLen(to,from){
+          if(this.ispop){
+
+          }else {
+              this.ispop = true
+              setTimeout(()=>{
+                  this.ispop = false
+              },1000)
+          }
+
         }
     },
   
@@ -104,7 +125,27 @@ export default {
 
 <style lang='scss'>
   @import '../assets/css/main';
+.popui{
+    position: absolute;
+    animation: popui 1s ease-in-out ;
+}
+@keyframes popui {
+    0%{
+        color: $primary-darken;
+  }
+
+    60%{
+        color: $primary;
+    }
+
+    100%{
+        color: $primary-light;
+        transform: translate(0,-100px);
+    }
+}
+
 .player{
+
     height: 40px;
     width: 100%;
     box-shadow: 0px 0px 1px #ccc;

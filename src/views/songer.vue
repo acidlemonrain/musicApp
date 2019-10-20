@@ -1,21 +1,32 @@
 <template>
-  <div>
-      <div class="switch">
-            <span @click="songmode=false" class="btn" style="margin-right:10px">歌手信息</span>
-           <span @click="songmode=true" class="btn">热门歌曲</span>
+  <div class="flex-box">
+    <div class="flex-item">
+      <div class="box">
+          <div class="switch">
+              <span @click="songmode=true" class="btn" style="margin-right:10px">热门歌曲</span>
+              <span @click="songmode=false" class="btn" >歌手信息</span>
+          </div>
+          <songerInfoVue v-show="!songmode" :info=info />
+          <songsVue v-show="songmode" :songs=songs />
       </div>
-      <songerInfoVue v-show="!songmode" :info=info />
-      <songsVue v-show="songmode" :songs=songs />
+    </div>
+      <div class="flex-item  " >
+        <div >
+            <p class="title" style="text-align: center">相似歌手</p>
+            <songers :songers = relates />
+        </div>
+      </div>
   </div>
+
 </template>
 
 <script>
 import songsVue from '../components/songs.vue'
 import songerInfoVue from '../components/songerInfo.vue'
-
+import songers from "../components/songers";
 export default {
     components: {
-        songsVue,songerInfoVue
+        songsVue,songerInfoVue,songers
     },
     computed: {
         id() {
@@ -26,7 +37,8 @@ export default {
         return {
             info: {},
             songs:[],
-            songmode:true
+            songmode:true,
+            relates:[]
         }
     },
     created () {
@@ -42,6 +54,9 @@ export default {
         this.axios.get('artists?id='+this.$route.params.id).then(res=>{
             this.songs = res.data.hotSongs
          })
+           this.axios.get('simi/artist?id='+this.$route.params.id).then(res=>{
+               this.relates = res.data.artists
+           })
         }
     },
     watch: {

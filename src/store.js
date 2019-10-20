@@ -18,6 +18,11 @@ export default new Vuex.Store({
       user:null,
     
   },
+    getters:{
+      isAuth:state => {
+          return state.user != null
+      }
+    },
   mutations: {
 
        
@@ -35,7 +40,13 @@ export default new Vuex.Store({
       setMode(state,info){
         state.player.mode = info;
       },
+      clearPlaylist(state,info){
+          state.player.playlist = []
+      },
       //
+      setSongImg(state,info){
+        state.player.song.img = info;
+        },
       addSong(state,info){
         if(state.player.playlist.map(ele=>ele.id).includes(info.id)){
 

@@ -81,8 +81,11 @@
 
 .flex-box{
     display: flex;
-    border: 1px solid #ccc;
+
     padding: 10px;
+}
+.flex-item{
+   width: 50%;
 }
 
 @media screen and (max-width: 650px) {
@@ -90,6 +93,9 @@
         display: block;
         border: 1px solid #ccc;
         padding: 10px;
+    }
+    .flex-item{
+        width: 100%;
     }
     
 }

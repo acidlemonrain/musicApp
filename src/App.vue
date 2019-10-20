@@ -57,9 +57,11 @@ export default {
   },
   mounted () {
       this.player = this.$store.state.player.mp3;
-    //  this.player = new Audio().autoplay = true
+      this.player = new Audio() 
       this.player.autoplay = true
-    
+      this.player.onerror = (e)=>{
+         this.$store.commit('playNext',null)
+      }
       this.player.addEventListener('timeupdate',()=>{
            if(this.player.src){
             this.$store.commit('setSec',this.player.currentTime)
@@ -108,11 +110,11 @@ export default {
     watch: {
       song(to, from) {
           this.player.src = to.url;
-
-       
-         
-
+          this.axios.get("song/detail?ids=" + this.song.id).then(res => {
+               this.$store.commit('setSongImg',res.data.songs[0].al.picUrl)
+          });
       },
+
       loop(to, from) {
           this.player.currentTime = 0
       }
@@ -197,5 +199,9 @@ export default {
 
   }
 }
-
+.box{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+}
 </style>

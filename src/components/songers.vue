@@ -25,12 +25,12 @@ props: ['songers']
     margin: 10px;
 }
 .songers-box{
-    width: 70%;
+    width: 100%;
     margin: auto
 }
-@media screen and (max-width: 650px) {
-.songers-box{
-    width: 100%;
-}
-}
+/*@media screen and (max-width: 650px) {*/
+/*.songers-box{*/
+/*    width: 100%;*/
+/*}*/
+/*}*/
 </style>

@@ -10,9 +10,9 @@
            <div class="nav-ui" @click="goto('albums')">
            <font-awesome-icon :icon="['fas', 'drum']" /> 热门歌单
           </div>
-            <div class="nav-ui" @click="goto('music')">
-           <font-awesome-icon :icon="['fas', 'music']" /> 音乐
-          </div>
+<!--            <div class="nav-ui" @click="goto('music')">-->
+<!--           <font-awesome-icon :icon="['fas', 'music']" /> 音乐-->
+<!--          </div>-->
             <div class="nav-ui" @click="goto('login')" v-show="user == null">
            <font-awesome-icon :icon="['fas', 'user']" /> 登录
           </div>
@@ -36,8 +36,8 @@ methods: {
   close() {
      this.$emit('switch')
   },
-  goto(x){
-    this.$router.push('/'+x);
+  goto(x) {
+ if (this.$route.path != '/' + x) this.$router.push('/' + x);
     this.close();
   }
 },
@@ -63,7 +63,7 @@ methods: {
     padding: 10px;
     font-size: 14px;
     color:$secondary-darken;
-    transition:  all .2s;
+
     &:hover{
       background-color: $primary;
     }
@@ -79,7 +79,7 @@ methods: {
     height: 100vh;
     width: 150px;
     position: absolute;
-    background-color: $primary-light;
+    background-color: rgba(224, 217, 190, 0.95);
     box-shadow: 0px 0px 10px black;
   }
  &-page{

@@ -2,7 +2,7 @@
     <div class="songer-box">
          <router-link class="songer" :to="'/songer/'+songer.id">
              <img :src="songer.picUrl" alt="" srcset="" class="songer-img">
-             <p> {{songer.name|shorten}} </p>
+             <p class="songer-name"> {{songer.name|shorten}} </p>
         </router-link>    
     </div>
 </template>
@@ -24,14 +24,17 @@ props:  ['songer'],
     padding: 10px;
 }
 .songer-img{
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
 }
 
 @media screen and (max-width: 650px) {
   .songer-box{
     padding: 5px;
 }
+    .songer-name{
+        font-size: 10px;
+    }
 .songer-img{
     height: 100px;
     width: 100px;

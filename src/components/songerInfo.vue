@@ -45,7 +45,7 @@ props:['info']
 }
 .introduction{
     margin: 10px;
-    border: 1px solid #ccc;
+
     padding: 10px;
 }
 .info-block{

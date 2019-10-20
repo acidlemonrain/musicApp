@@ -14,7 +14,7 @@
              </p>
            
          <div class="playlist-songs" >
-            <songsVue  :songs=playlist />
+            <songsVue :isbtn="false"  :songs=playlist />
          </div>
      
   </div>

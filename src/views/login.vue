@@ -23,7 +23,7 @@ export default {
         login() {
                this.axios('/login/cellphone?phone='+this.phone+'&password='+this.password).then(res=>{
                 this.$store.commit('setUser',res.data)
-                alert('登录成功，欢迎你 '+res.data.profile.nickname)
+
                 this.$router.push('/user')
                 
             })
