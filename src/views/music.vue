@@ -37,7 +37,7 @@
 
     <div class="flex-box" style="margin:10px">
       <div class="music-comments">
-        <p class="title" style="margin:10px">
+        <p class="title border-primary-bottom" style="margin:10px">
           热门评论
         </p>
         <commentVue
@@ -48,7 +48,7 @@
       </div>
 
       <div class="music-relates ">
-        <p class="title" style="margin:10px ;border-bottom: 1px dotted #ccc">
+        <p class="title border-primary-bottom" style="margin:10px  ">
           相似推荐
         </p>
         <div class="music-relates-content">
@@ -164,6 +164,7 @@ export default {
       }
     }
     &-comments {
+
       width: 100% !important;
     }
     &-img {
@@ -192,14 +193,16 @@ export default {
 
 .music {
   &-relates {
+    margin: 0px 10px;
     width: 50%;
     position: relative;
-    padding: 10px;
+    padding: 0px;
     &-content {
       width: 100%;
     }
   }
   &-comments {
+    margin: 0px 10px;
     width: 50%;
   }
   &-img {

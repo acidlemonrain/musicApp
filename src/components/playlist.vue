@@ -14,7 +14,7 @@
              </p>
            
          <div class="playlist-songs" >
-            <songsVue is-scroll="true" :isbtn="false"  :songs=playlist />
+            <songsVue :is-scroll=true :isbtn="false"  :songs=playlist />
          </div>
      
   </div>
@@ -54,7 +54,7 @@ export default {
   @import '../assets/css/utils';
 .playlist{
     position: fixed;
-    bottom: 40px;
+    bottom: 70px;
     z-index: 999;
     right: 0px;
     height: 70vh;

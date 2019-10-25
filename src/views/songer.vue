@@ -10,9 +10,9 @@
           <songsVue v-show="songmode" :songs=songs />
       </div>
     </div>
-      <div class="flex-item  " >
-        <div >
-            <p class="title" style="text-align: center">相似歌手</p>
+      <div class="flex-item  "  >
+        <div style="margin: 10px">
+            <p class="title border-primary-bottom" style="text-align: center">相似歌手</p>
             <songers :songers = relates />
         </div>
       </div>

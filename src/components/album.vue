@@ -8,6 +8,7 @@
                     <img :src=album.coverImgUrl||album.picUrl  class="album-img img" >
                     </div>
                     <p class="album-name"> {{album.name|shorten}} </p>
+                   <p v-if="album.playCount" class="album-name">播放量: <span class="secondary">{{album.playCount}}</span> </p>
                </div>   
           </div>
         </router-link  >

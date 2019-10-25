@@ -3,22 +3,22 @@
      <div class="flex-box" style="margin:10px">
 
             <div class="songer-type-box" >
-               <p class="title" style="margin-bottom:17px;">歌手类型：</p>
-               <p style="margin-bottom:10px;"> 
-                    <span style="color:#ccc">按地区:</span>
+               <p class="title border-primary-bottom" style="margin-bottom:17px; padding: 10px; ">歌手类型：</p>
+               <div style="margin-bottom:10px; border: 1px solid #ccc;padding: 5px"  >
+                    <p style="color:#ccc;margin-bottom: 5px">按地区:</p>
                    <button @click="type.area=1" class="songer-type">华语</button>
                    <button @click="type.area=2" class="songer-type">欧美</button>
                    <button @click="type.area=6" class="songer-type">日本</button>
                    <button @click="type.area=7" class="songer-type">韩国</button>
                    <button @click="type.area=4" class="songer-type">其他</button>
-                 </p>
-                  <p> 
-                    <span style="color:#ccc">按性别:</span>
+                 </div>
+                  <div style="border: 1px solid #ccc;padding: 5px " >
+                    <p style="color:#ccc; margin-bottom: 5px">按性别:</p>
                    <button @click="type.sex=1" class="songer-type">男歌手</button>
                    <button @click="type.sex=2" class="songer-type">女歌手</button>
                    <button @click="type.sex=3" class="songer-type">组合</button>
  
-                </p>
+                </div>
             </div>
 
           <songers :songers=songers />

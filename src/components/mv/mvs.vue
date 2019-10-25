@@ -9,13 +9,11 @@
 <script>
     import mv from "./mv";
     export default {
+        name:'mvs',
         props:['mvs'],
         components:{
             mv
         },
-
-
-
     }
 </script>
 

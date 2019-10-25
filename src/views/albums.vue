@@ -24,6 +24,7 @@ data() {
  created () {
        this.axios.get('top/playlist/highquality?limit=40').then(res=>{
            this.albums.data = res.data.playlists
+           console.log(this.albums.data)
        })
     },
 

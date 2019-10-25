@@ -40,6 +40,9 @@
     border: 1px solid $primary-darken;
 }
 
+.border-primary-bottom{
+    border-bottom: 2px solid $primary;
+}
 
 //尺寸
 .full-container{
@@ -117,11 +120,15 @@
     font-size: 15px;
     padding:  5px;
     border: 2px solid $secondary-darken;
+    border-radius: 4px 4px 0px 0px;
+    cursor: pointer;
     display: inline-block;
     background-color:$primary;
     outline: none;
     &:hover{
         background-color: $primary-darken;
+        box-shadow: 0px 3px 3px $secondary-light;
+
     }
     &-second{
         border: 2px solid $secondary-darken;
@@ -132,7 +139,10 @@
     }
 }
 
- 
+
+
+
+
 
 //文字
 
@@ -148,6 +158,7 @@
         padding: 0px;
         &-name{
             font-size: 10px;
+            width: 100px;
         }
         &-img{
             height: 100px !important;
@@ -160,8 +171,10 @@
     }
 }
 .album{
+    position: relative;
+
     &-name{
-        width: 100%;
+     width: 150px;
     }
     padding: 10px;
     &s{
@@ -171,6 +184,7 @@
 
     }
     &-img{
+        border: 2px solid #ccc;
         height: 150px;
         width: 150px;
         background-color: #ccc;
@@ -178,6 +192,7 @@
     &-info{
         display: flex;
         flex-direction: column;
+
     }
     &-name-detail{
         position: absolute;
@@ -201,3 +216,4 @@
     }
 
 }
+

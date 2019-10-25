@@ -18,7 +18,7 @@ props: ['comment']
 
 <style>
 .comment{
-    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     padding: 5px;
 }
 .comment-author{
