@@ -78,6 +78,7 @@ export default new Vuex.Store({
           }
           state.player.song = state.player.playlist[state.player.index];
         }else{
+            console.log('loop vuex')
           state.player.loop = -state.player.loop
         }
       }

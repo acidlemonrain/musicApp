@@ -22,9 +22,9 @@
         {{ alia }}
       </span>
     </p>
-      <p class="play-btn" v-if="isUi">
+      <p class="play-btn">
           <span @click="play(true)"><font-awesome-icon :icon="['fas', 'play-circle']" class="song-icon" title="播放该歌曲"   /></span>
-          <span @click="play(false)"><font-awesome-icon :icon="['fas', 'plus']" class="song-icon" title="添加到播放列表" /></span>
+          <span @click="play(false)"  v-if="isUi"><font-awesome-icon :icon="['fas', 'plus']" class="song-icon" title="添加到播放列表" /></span>
       </p>
   </div>
 </template>

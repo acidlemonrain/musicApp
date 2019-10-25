@@ -20,7 +20,7 @@
                     </p>
               </div>
 
-               <songs-vue v-if="type == 1" :songs=data.result.songs />
+               <songs-vue  :is-scroll="true" v-if="type == 1" :songs=data.result.songs />
                <songers-vue v-if="type == 100" :songers=data.result.artists />
                <mvs v-if="type == 1004" :mvs=data.result.mvs />
               <albums-vue v-if="type == 1000" :albums=data.result.playlists />

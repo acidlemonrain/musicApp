@@ -14,7 +14,7 @@
              </p>
            
          <div class="playlist-songs" >
-            <songsVue :isbtn="false"  :songs=playlist />
+            <songsVue is-scroll="true" :isbtn="false"  :songs=playlist />
          </div>
      
   </div>

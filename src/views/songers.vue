@@ -67,13 +67,21 @@ export default {
 </script>
 
 <style lang="scss"  >
+    @import '../assets/css/main';
+    @import '../assets/css/utils';
 .songer{
     &s-page{
 
     }
     &-type{
         margin: 3px 5px;
-
+        border: 1px solid $secondary;
+        color: $secondary-darken;
+        background-color: $primary-light;
+        border-radius: 3px;
+        &:hover{
+            background-color: $primary;
+        }
         &-box{
             margin: 10px;
             padding: 10px;

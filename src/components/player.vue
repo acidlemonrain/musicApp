@@ -1,37 +1,40 @@
 <template>
-  <div class="player" v-if="song">
-      <playlistVue  :show=!show    />
-      <div class="player-box" >
-            <router-link   class="song-img" to="/music">
-                <img :src="song.img" alt="" height="40px"  width="40px" >
-            </router-link>
-          <div class="player-ui" @click=playorstop >
+
+
+      <div class="player" v-if="song" :class="{toggle:istoggle}">
+
+          <playlistVue  :show=!show    />
+          <div class="player-box" >
+              <router-link   class="song-img" to="/music">
+                  <img :src="song.img" alt="" height="40px"  width="40px" >
+              </router-link>
+              <div class="player-ui" @click=playorstop >
 
               <span v-show="pause">
                   <font-awesome-icon :icon="['fas', 'pause-circle']" />
               </span>
-              <span v-show="!pause">
+                  <span v-show="!pause">
                     <font-awesome-icon :icon="['fas', 'play-circle']" />
-                 
+
               </span>
-            
-          </div>
-          <div class="player-ui" @click="next">
+
+              </div>
+              <div class="player-ui" @click="next">
                 <span >
                     <font-awesome-icon :icon="['fas', 'arrow-right']" />
-                 
+
               </span>
-          </div>
-          <div class="player-progress">
+              </div>
+              <div class="player-progress">
 
 
 
-              <div class="player-song  "  style=" overflow-x: hidden" v-if="song">
+                  <div class="player-song  "  style=" overflow-x: hidden" v-if="song">
 
-                  <p class="song-txt  " style=" display: inline-block; width: 1000px" ref="txt">
+                      <p class="song-txt  " style=" display: inline-block; width: 1000px" ref="txt">
 
-                      <span> {{ song.name}}</span>
-                      <span style='color:#ccc'>
+                          <span> {{ song.name}}</span>
+                          <span style='color:#ccc'>
                   <span v-for="item in  song.artists" :key="item.id">
                       {{ item.name }}
                   </span>
@@ -39,31 +42,32 @@
                       {{ item.name }}
                   </span>
                   </span>
-                  </p>
-                  
+                      </p>
+
+                  </div>
+                  <div class="player-progress-line-mask">
+                      <div class="player-progress-line" :style="{width:progress +'%'}">
+                          <div class="player-progress-line-ball"></div>
+                      </div>
+                  </div>
+
               </div>
-              <div class="player-progress-line-mask">
-                   <div class="player-progress-line" :style="{width:progress +'%'}">
-                  <div class="player-progress-line-ball"></div>
+              <div class="player-ui" >
+                  <input type="range" style="width:40px"  min="0" max="1" step="0.01" v-model="volume">
               </div>
-              </div>
-             
-          </div>
-          <div class="player-ui" >
-              <input type="range" style="width:40px"  min="0" max="1" step="0.01" v-model="volume">  
-          </div>
-            <div class="player-ui"  @click="show =!show">
+              <div class="player-ui"  @click="show =!show">
                 <span>
               <font-awesome-icon :icon="['fas', 'bars']" />
                 </span>
 
-                <div v-if="ispop">
-                    <span class="popui" > {{playlistLen}} </span>
-                </div>
+                  <div v-if="ispop">
+                      <span class="popui" > {{playlistLen}} </span>
+                  </div>
 
-            </div>
+              </div>
+          </div>
       </div>
-  </div>
+
 </template>
 
 <script>
@@ -109,6 +113,7 @@ export default {
             show: false,
             volume:1,
             ispop:false,
+            istoggle:false
         }
     },
     methods: {
@@ -119,6 +124,7 @@ export default {
         next(){
             this.$store.commit('playNext',null)
         },
+
 
     },
     watch: {
@@ -152,6 +158,7 @@ export default {
     position: absolute;
     animation: popui 1s ease-in-out ;
 }
+
 @keyframes popui {
     0%{
         color: $primary-darken;
@@ -171,14 +178,22 @@ export default {
 
     height: 40px;
     width: 100%;
-    box-shadow: 0px 0px 1px #ccc;
+    box-shadow: 1px 0px 4px rgba(69, 69, 69, 0.77);
+    background-color: $primary-lighter;
     position: relative;
+    transition: all .2s;
     &-song{
         position: absolute;
         margin-top: 5px;
         font-size: 16px;
         color: black;
         width: 400px;
+    }
+    &-toggle{
+        position: absolute;
+        right: 0;
+        top:-30px;
+        background-color: #D59358;
     }
     &-box{
         height: 100%;

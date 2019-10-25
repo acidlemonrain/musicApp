@@ -22,10 +22,15 @@ props:  ['songer'],
 
 .songer-box{
     padding: 10px;
+
 }
 .songer-img{
-    height: 120px;
-    width: 120px;
+    height: 150px;
+    width: 150px;
+
+    position: relative;
+    border-radius: 3px;
+
 }
 
 @media screen and (max-width: 650px) {

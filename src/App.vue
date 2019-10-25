@@ -6,17 +6,14 @@
       
     <div class="nav">
    
-      <!-- <router-link to="/" class="nav-item bg-primary ">热门歌手</router-link>
-      <router-link to="/albums" class="nav-item bg-primary-darken">热门歌单</router-link>
-      <router-link to="/about" class="nav-item bg-primary">测试页面</router-link>
-       <router-link to="/music" class="nav-item bg-primary">音乐</router-link>
-      <router-link to="/login" class="nav-item bg-secondary" v-show="user == null">登录</router-link>
-      <router-link to="/user" class="nav-item bg-secondary" v-show="user != null">用户中心</router-link>
-      <button  @click="logout" class="nav-item bg-secondary" v-show="user != null">注销</button>
-      <input type="text" @focus="gosearch"> -->
-   
+
       <sidenav  :show=navkey @switch="navkey=false"  />
-      <span class="player-ui" @click="navkey=true">    <font-awesome-icon :icon="['fas', 'arrow-circle-right']" />     </span>
+
+        <div class="player-ui">
+            <span  class="player-ui" style="margin-left: 0"  @click="navkey=true">    <font-awesome-icon :icon="['fas', 'arrow-circle-right']" />     </span>
+            <router-link class="player-ui" to="/" >         <font-awesome-icon :icon="['fas', 'music']" />     </router-link>
+        </div>
+
       <span class="search">
          <input type="text" class="search-input" v-model="searchkey" @focus="gosearch"> 
          <span class="search-icon" @click="search">
@@ -51,6 +48,7 @@ export default {
     user: state => state.user,
     song:state => state.player.song ,
     loop:state => state.player.loop ,
+    mode:state => state.player.mode
   }),
   components: {
      playerVue,sidenav
@@ -117,7 +115,9 @@ export default {
       },
 
       loop(to, from) {
+          console.log('loop')
           this.player.currentTime = 0
+        this.player.play()
       }
     },
     }
@@ -162,8 +162,9 @@ export default {
   height: 40px;
   display: flex;
   justify-content: space-between;
+    box-shadow: 0px 1px 2px #ccc;
+    background-color: $primary-lighter;
   z-index: 8;
- box-shadow: 0px 0px 1px #ccc;
   &-item{
     height: 40px;
     font-size: 20px;

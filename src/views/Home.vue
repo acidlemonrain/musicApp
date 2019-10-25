@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img src="@/assets/music.svg"  class="music-svg" >
   </div>
 </template>
 
@@ -16,3 +15,20 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+
+  .home{
+    width: 100%;
+
+    text-align: center;
+
+  }
+  .music-svg{
+
+    position: relative;
+    height: 70vh;
+    width: 80vw;
+
+
+  }
+</style>

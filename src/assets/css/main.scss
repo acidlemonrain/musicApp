@@ -1,7 +1,8 @@
 //主题颜色
 $primary: rgb(231, 218, 166);
 $secondary:#D59358;
-$primary-light: lighten($primary,10%); 
+$primary-light: lighten($primary,10%);
+$primary-lighter:lighten($primary,20%);
 $primary-darken:darken($primary,30%);
 $secondary-light: lighten($secondary,10%);
 $secondary-darken: darken($secondary,30%);
