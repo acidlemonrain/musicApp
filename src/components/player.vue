@@ -1,5 +1,13 @@
 <template>
   <div class="player" v-if="song" :class="{ playerHide: playerHide }">
+
+      <div class="hack">
+          ◆
+      </div>
+      <div class="hack-inside" @click="toggle">
+          ◆
+      </div>
+
     <playlistVue :show="!show" />
     <div class="player-box">
       <router-link class="song-img" to="/music">
@@ -133,6 +141,10 @@ export default {
     };
   },
   methods: {
+      toggle(){
+
+          this.$emit('toggle')
+      },
     playorstop() {
       this.$emit("playorstop");
     },
@@ -174,6 +186,22 @@ export default {
 .playerHide {
   transform: translate(0px, 70px);
 }
+.hack{
+    position: absolute;
+    right: 20px;
+    top:-33px;
+    font-size: 60px;
+
+    color: #ccc;
+    &-inside{
+        font-size: 60px;
+        right: 20px;
+        top:-32px;
+        position: absolute;
+        color: $primary-lighter;
+        cursor: pointer;
+    }
+}
 @keyframes popui {
   0% {
     color: $primary-darken;
@@ -192,7 +220,7 @@ export default {
 .player {
   height: 70px;
   width: 100%;
-  box-shadow: 1px 0px 4px rgba(69, 69, 69, 0.77);
+ border-top: 1px solid #ccc;
   background-color: $primary-lighter;
   position: fixed;
   bottom: 0px;

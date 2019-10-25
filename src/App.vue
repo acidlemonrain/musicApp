@@ -34,8 +34,8 @@
         <div style="height: 70px; width: 1px; position: relative" v-if="(!playerHide) && song ">
 
         </div>
-      <div class="toggle-player" @click="playerHide = !playerHide" v-if="song"  :class="{moveDonw:playerHide}"  ></div>
-      <playerVue :playerHide="playerHide"  :pause="paused" @playorstop="playorstop" @volume="volume" />
+<!--      <div class="toggle-player" @click="playerHide = !playerHide" v-if="song"  :class="{moveDonw:playerHide}"  ></div>-->
+      <playerVue :playerHide="playerHide"  @toggle="playerHide = !playerHide" :pause="paused" @playorstop="playorstop" @volume="volume" />
     </div>
   </div>
 </template>
