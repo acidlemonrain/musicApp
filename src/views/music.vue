@@ -133,7 +133,8 @@ export default {
       });
 
       this.axios.get("comment/music?id=" + this.song.id).then(res => {
-        this.comments = res.data.comments;
+        this.comments = res.data.hotComments;
+        console.log(this.comments)
       });
 
       this.axios.get("simi/song?id=" + this.song.id).then(res => {

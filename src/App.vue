@@ -126,22 +126,8 @@ export default {
 <style lang="scss">
 @import "./assets/css/main";
 @import "./assets/css/utils";
-.moveDonw{
-    transform: translate(0,70px) rotate(45deg) !important;
-}
-.toggle-player {
-  height: 40px;
-  width: 40px;
-  position: fixed;
-    transition: all .2s;
-  bottom: 55px;
-  right: 40px;
-    cursor: pointer;
-    background-color: $primary-light;
-    transform: rotate(45deg);
-    box-shadow: 0px 0px 5px #ccc;
 
-}
+
 .search {
   height: 26px;
   margin: 7px;
